@@ -6,11 +6,12 @@
 
 ##################################
 Requirements
- - Python3
- - Hashcat
- - hcxtools (for generating Hashcat compatible handshake files)
- - Hashcat compatible handshake file(s)
 ##################################
+ 	- Python3
+ 	- Hashcat
+ 	- hcxtools (for generating Hashcat compatible handshake files)
+ 	- Hashcat compatible handshake file(s)
+
 
 ##################################
 Instructions for use
@@ -18,7 +19,8 @@ Instructions for use
 
 1. Setting up the wordlist
 	- Add or reomve entries from nouns and adjectives as you see fit. The default is pretty decent but probably contains extraneous words.
-	- run "python3 Spectrum_Wordlist_Creator.py"
+	- Run "python3 wordlist.py"
+	- Script will output the file "wordlist.txt"
 
 2. Preparing the handshake capture
 	- 

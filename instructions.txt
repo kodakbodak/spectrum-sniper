@@ -6,10 +6,10 @@ This project contains an adjectives file, noun file, and a ruleset to meet these
 Simply edit the adjective and noun lists to your liking, then run the python script to generate your wordlist.
 You can also edit the ruleset to your needs. For example, if you already know the three digits for some reason.
 
-Takes about 3.5hrs using a Radeon 7800 xt for a single hash (see output below)
+Takes up to 3.5hrs using a single Radeon 7800 xt for a single password (see output below)
 
 Original by Nova-Sec - https://github.com/Nova-Sec/SpectrumSniper.git
-My refined, slightly faster and simpler to use version
+My refined, slightly faster cracking and simpler to use version
 	- Smaller wordlists for faster, more targeted cracking
 	- Uses a rule file for modularity and customization
 
@@ -44,7 +44,7 @@ Instructions for use
 	- hashcat -m 22000 candidates.hc22000 --show (this will show the results)
 
 	##############################
-	Example Output and timing
+	Example Output and Timing
 	##############################
 
 	Session..........: hashcat

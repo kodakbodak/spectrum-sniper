@@ -1,0 +1,24 @@
+<-- Spectrum (⌐■_■) ▄︻デ══━一 Sniper -->
+
+#Spectrum wordlist generator  for Spectrum default wifi logins
+
+#Use of defult wifi credentials is too common, this takes avantage of that
+
+##################################
+Requirements
+ - Python3
+ - Hashcat
+ - hcxtools (for generating Hashcat compatible handshake files)
+ - Hashcat compatible handshake file(s)
+##################################
+
+##################################
+Instructions for use
+##################################
+
+1. Setting up the wordlist
+	- Add or reomve entries from nouns and adjectives as you see fit. The default is pretty decent but probably contains extraneous words.
+	- run "python3 Spectrum_Wordlist_Creator.py"
+
+2. Preparing the handshake capture
+	- 
